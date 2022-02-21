@@ -1,4 +1,4 @@
-package com.capgemini.ccsw.tutorial.game;
+package com.capgemini.ccsw.tutorial.prestamos;
 
 import java.util.List;
 
@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capgemini.ccsw.tutorial.game.model.Game;
-import com.capgemini.ccsw.tutorial.game.model.GameDto;
+import com.capgemini.ccsw.tutorial.prestamos.model.Prestamo;
+import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoDto;
 import com.devonfw.module.beanmapping.common.api.BeanMapper;
 
 /**
 * @author ccsw
 */
-@RequestMapping(value = "/game")
+@RequestMapping(value = "/prestamos")
 @RestController
 @CrossOrigin(origins = "*")
-public class GameController {
+public class PrestamoController {
 
     @Autowired
-    GameService gameService;
+    PrestamoService prestamoService;
 
     @Autowired
     BeanMapper beanMapper;
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<GameDto> find(@RequestParam(value = "title", required = false) String title,
-            @RequestParam(value = "idCategory", required = false) Long idCategory) {
+    public List<PrestamoDto> find(@RequestParam(value = "idGame", required = false) Long idGame,
+            @RequestParam(value = "idCliente", required = false) Long idCliente) {
 
-        List<Game> games = gameService.find(title, idCategory);
+        List<Prestamo> prestamos = prestamoService.find(idGame, idCliente);
 
-        return beanMapper.mapList(games, GameDto.class);
+        return beanMapper.mapList(prestamos, PrestamoDto.class);
     }
 
     @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody GameDto dto) {
+    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody PrestamoDto dto) {
 
-        gameService.save(id, dto);
+    	prestamoService.save(id, dto);
     }
 
 }

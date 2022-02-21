@@ -19,3 +19,5 @@ INSERT INTO GAME(id, title, age, category_id, author_id) VALUES (6, 'Azul', '8',
 INSERT INTO CLIENTE(id, name) VALUES (1, 'Daniel');
 INSERT INTO CLIENTE(id, name) VALUES (2, 'Laura');
 INSERT INTO CLIENTE(id, name) VALUES (3, 'Carlos');
+
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (1, 1, 1, NULL, NULL);

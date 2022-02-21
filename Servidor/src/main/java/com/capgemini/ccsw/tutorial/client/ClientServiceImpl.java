@@ -43,15 +43,26 @@ public class ClientServiceImpl implements ClientService {
     public void save(Long id, ClientDto dto) {
 
     	Client cliente = null;
-
+    	boolean existe = false;
         if (id == null)
             cliente = new Client();
         else
             cliente = this.get(id);
 
         cliente.setName(dto.getName());
-
-        this.clientRepository.save(cliente);
+        
+        for( Client aux : findAll())
+        {
+        	if (aux.getName().equals(cliente.getName()))
+        	{
+        		System.out.print("El nombre ya existe, no lo creamos\n");
+        		existe = true;
+        		break;
+        	}
+        }
+        
+        if(!existe)
+        	this.clientRepository.save(cliente);
     }
 
     /**
