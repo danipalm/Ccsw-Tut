@@ -1,5 +1,7 @@
 package com.capgemini.ccsw.tutorial.author;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.capgemini.ccsw.tutorial.author.model.Author;
@@ -38,5 +40,7 @@ public interface AuthorService {
     * @param id
     */
     void delete(Long id);
+    
+    List<Author> findAll();
 
 }

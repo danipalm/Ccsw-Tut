@@ -1,5 +1,7 @@
 package com.capgemini.ccsw.tutorial.author;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,5 +60,18 @@ public class AuthorController {
     public void delete(@PathVariable("id") Long id) {
 
         this.authorService.delete(id);
+    }
+    
+    
+    /**
+    * Recupera un listado de autores
+    * @return
+    */
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<AuthorDto> findAll() {
+
+        List<Author> authors = this.authorService.findAll();
+
+        return this.beanMapper.mapList(authors, AuthorDto.class);
     }
 }
