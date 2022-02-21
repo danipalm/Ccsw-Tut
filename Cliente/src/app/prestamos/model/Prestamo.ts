@@ -4,7 +4,7 @@ import { Cliente } from "src/app/clientes/model/Cliente";
 export class Prestamo{
   id : number | any;
   game : Game | any;
-  cliente : Cliente | any;
-  fecha_prestamo : Date | any;
-  fecha_devolucion : Date | any;
+  client : Cliente | any;
+  date_p : Date | any;
+  date_d : Date | any;
 }

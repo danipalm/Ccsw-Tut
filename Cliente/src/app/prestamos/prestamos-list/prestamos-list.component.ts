@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { PrestamosService } from '../prestamos.service';
 import { PrestamosEditComponent } from '../prestamos-edit/prestamos-edit.component';
-import { ClientesService } from 'src/app/clientes/clientes.service';
 import { GameService } from 'src/app/game/game.service';
 import { Game } from 'src/app/game/model/Game';
-import { Cliente } from 'src/app/clientes/model/Cliente';
-import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/dialog-confirmation.component';
 import { Pageable } from 'src/app/core/model/page/Pageable';
 import { Prestamo } from '../model/Prestamo';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { Cliente } from 'src/app/clientes/model/Cliente';
+import { ClientesService } from 'src/app/clientes/clientes.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/dialog-confirmation.component';
+
 @Component({
   selector: 'app-prestamos-list',
   templateUrl: './prestamos-list.component.html',
@@ -37,6 +39,9 @@ export class PrestamosListComponent implements OnInit {
     public dialog: MatDialog,) { }
 
   ngOnInit(): void {
+
+    this.loadPage();
+
     this.gameService.getGames().subscribe(
       games => this.games = games
   );

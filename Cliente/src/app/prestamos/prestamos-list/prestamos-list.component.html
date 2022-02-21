@@ -8,29 +8,29 @@
       </ng-container>
 
       <ng-container matColumnDef="game">
-          <mat-header-cell *matHeaderCellDef> Nombre del Juego  </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> Nombre juego  </mat-header-cell>
+          <mat-cell *matCellDef="let client of clientes"> {{client.name}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="cliente">
-          <mat-header-cell *matHeaderCellDef> Nombre del Cliente  </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.nationality}} </mat-cell>
-      </ng-container>
+      <ng-container matColumnDef="client">
+        <mat-header-cell *matHeaderCellDef> Nombre del Cliente  </mat-header-cell>
+        <mat-cell *matCellDef="let game of games"> {{game.name}} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="date_p">
-        <mat-header-cell *matHeaderCellDef> Fecha de prestamo  </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.nationality}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="date_p">
+      <mat-header-cell *matHeaderCellDef> Fecha Prestamo  </mat-header-cell>
 
-      <ng-container matColumnDef="date_d">
-        <mat-header-cell *matHeaderCellDef> Fecha de devolucion  </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.nationality}} </mat-cell>
-      </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="date_d">
+      <mat-header-cell *matHeaderCellDef> Fecha Devolucion  </mat-header-cell>
+
+    </ng-container>
+
 
       <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let element">
-
               <button mat-icon-button color="accent">
                   <mat-icon >clear</mat-icon>
               </button>
@@ -41,9 +41,7 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator (page)="loadPage($event)" [pageSizeOptions]="[5, 10, 20]" [pageIndex]="pageNumber" [pageSize]="pageSize" [length]="totalElements"  showFirstLastButtons></mat-paginator>
-
   <div class="buttons">
-      <button mat-flat-button color="primary" >Nuevo Prestamo</button>
+      <button mat-flat-button color="primary">Nuevo Prestamo</button>
   </div>
 </div>

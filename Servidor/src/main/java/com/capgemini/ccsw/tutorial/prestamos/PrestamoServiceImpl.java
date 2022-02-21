@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.ccsw.tutorial.author.AuthorService;
@@ -16,6 +17,7 @@ import com.capgemini.ccsw.tutorial.game.model.Game;
 import com.capgemini.ccsw.tutorial.game.model.GameDto;
 import com.capgemini.ccsw.tutorial.prestamos.model.Prestamo;
 import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoDto;
+import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoSearchDto;
 
 /**
 * @author ccsw
@@ -66,6 +68,12 @@ public class PrestamoServiceImpl implements PrestamoService {
 		 
 		 this.prestamoRepository.save(prestamo);
 		
+	}
+
+
+	@Override
+	public Page<Prestamo> findPage(PrestamoSearchDto dto) {
+		 return this.prestamoRepository.findAll(dto.getPageable());
 	}
 
 }
