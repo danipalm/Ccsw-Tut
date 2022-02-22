@@ -26,11 +26,15 @@ export class PrestamosService {
     return this.http.get<Prestamo[]>('http://localhost:8080/prestamos');
   }
 
-  saveGame(prestamo: Prestamo) {
+  savePrestamo(prestamo: Prestamo) {
     let url = 'http://localhost:8080/prestamos';
 
     return this.http.put<void>(url, prestamo);
   }
+  deletePrestamo(idPrestamo : number): Observable<void> {
+    return this.http.delete<void>('http://localhost:8080/prestamos/'+idPrestamo);
+}
+
 
 
   private composeFindUrl(gameId?: number, clienteId?: number) : string {

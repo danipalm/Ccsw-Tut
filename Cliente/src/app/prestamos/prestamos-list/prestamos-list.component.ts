@@ -10,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/clientes/model/Cliente';
 import { ClientesService } from 'src/app/clientes/clientes.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/dialog-confirmation.component';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-prestamos-list',
   templateUrl: './prestamos-list.component.html',
@@ -63,10 +65,14 @@ onSearch(): void {
 
     let gameId = this.filterGame != null ? this.filterGame.id : null;
     let clienteId = this.filterCliente != null ? this.filterCliente.id : null;
+    console.log("gameId = " + gameId + "| cliente: " + clienteId);
 
     this.prestamosService.getCustomPrestamos(gameId, clienteId).subscribe(
       prestamos => this.prestamos = prestamos
+
   );
+
+  this.dataSource = this.prestamos;
 
 }
 
@@ -78,6 +84,20 @@ createPrestamo() {
     dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
     });
+}
+
+deletePrestamo(prestamo: Prestamo) {
+  const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+      data: { title: "Eliminar Prestamo", description: "Atención si borra el prestamo se perderán sus datos.<br> ¿Desea eliminar el prestamo?" }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+          this.prestamosService.deletePrestamo(prestamo.id).subscribe(result =>  {
+              this.ngOnInit();
+          });
+      }
+  });
 }
 
 loadPage(event?: PageEvent) {

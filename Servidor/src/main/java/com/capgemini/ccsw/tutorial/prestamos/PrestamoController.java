@@ -57,5 +57,15 @@ public class PrestamoController {
 
     	prestamoService.save(id, dto);
     }
+    
+    /**
+     * Método para crear o actualizar un {@link com.capgemini.ccsw.tutorial.prestamo.model.Prestamo}
+     * @param id PK de la entidad
+     */
+     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+     public void delete(@PathVariable("id") Long id) {
+
+         this.prestamoService.delete(id);
+     }
 
 }

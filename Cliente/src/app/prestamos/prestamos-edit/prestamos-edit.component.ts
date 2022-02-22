@@ -76,7 +76,7 @@ export class PrestamosEditComponent implements OnInit {
         console.log("La fecha de prestamo máxima es de 14 días");
         return;
       }
-        this.prestamoService.saveGame(this.prestamo).subscribe(result => {
+        this.prestamoService.savePrestamo(this.prestamo).subscribe(result => {
             this.dialogRef.close();
         });
     }

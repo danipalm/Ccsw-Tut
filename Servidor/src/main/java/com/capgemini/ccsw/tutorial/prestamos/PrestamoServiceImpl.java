@@ -37,8 +37,8 @@ public class PrestamoServiceImpl implements PrestamoService {
      * {@inheritDoc}
      */
     @Override
-	public List<Prestamo> find(Long idGame, Long idCategory) {
-    	return this.prestamoRepository.find(idGame, idCategory);
+	public List<Prestamo> find(Long idGame, Long idCliente) {
+    	return this.prestamoRepository.find(idGame, idCliente);
 	}
     
     
@@ -57,7 +57,8 @@ public class PrestamoServiceImpl implements PrestamoService {
 	 prestamo.setClient(clientService.get(dto.getClient().getId()));
 	 prestamo.setGame(gameService.get(dto.getGame().getId()));
 	 
-	 
+	 List<Prestamo> listaPrestamosActuales =  find(prestamo.getGame().getId(), null);
+
 	 
 	 if (comprobacionesOK)
 		 this.prestamoRepository.save(prestamo);
@@ -70,11 +71,11 @@ public class PrestamoServiceImpl implements PrestamoService {
 		 return this.prestamoRepository.findAll(dto.getPageable());
 	}
 	
-	/*
+	
     public void delete(Long id) {
 
         this.prestamoRepository.deleteById(id);
 
-    } */
+    }
 
 }

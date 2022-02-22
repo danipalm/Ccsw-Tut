@@ -35,4 +35,10 @@ public interface PrestamoService {
     */
     void save(Long id, PrestamoDto dto);
 
+    /**
+     * Método para eliminar un {@link com.capgemini.ccsw.tutorial.prestamos.model.Prestamo}
+     * @param id
+     */
+     void delete(Long id);
+
 }

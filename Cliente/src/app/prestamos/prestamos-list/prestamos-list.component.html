@@ -60,8 +60,8 @@
       <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef>Eliminar</mat-header-cell>
           <mat-cell *matCellDef="let element">
-              <button mat-icon-button color="accent">
-                  <mat-icon >clear</mat-icon>
+              <button mat-icon-button color="accent" >
+                  <mat-icon (click)="deletePrestamo(element)" >clear</mat-icon>
               </button>
           </mat-cell>
       </ng-container>

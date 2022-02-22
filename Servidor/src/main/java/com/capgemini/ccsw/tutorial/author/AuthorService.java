@@ -36,7 +36,7 @@ public interface AuthorService {
     void save(Long id, AuthorDto data);
 
     /**
-    * Método para crear o actualizar un {@link com.capgemini.ccsw.tutorial.author.model.Author}
+    * Método para eliminar un {@link com.capgemini.ccsw.tutorial.author.model.Author}
     * @param id
     */
     void delete(Long id);
