@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capgemini.ccsw.tutorial.author.model.AuthorDto;
-import com.capgemini.ccsw.tutorial.author.model.AuthorSearchDto;
 import com.capgemini.ccsw.tutorial.prestamos.model.Prestamo;
 import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoDto;
 import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoSearchDto;
-import com.devonfw.module.beanmapping.common.api.BeanMapper;
-
+import com.capgemini.ccsw.tutorial.config.mapper.BeanMapper;
 /**
 * @author ccsw
 */
@@ -44,6 +41,7 @@ public class PrestamoController {
     	return this.beanMapper.mapPage(this.prestamoService.findPage(dto), PrestamoDto.class);
     	 
      }
+     
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<PrestamoDto> find(@RequestParam(value = "idGame", required = false) Long idGame,

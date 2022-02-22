@@ -10,6 +10,16 @@ import com.capgemini.ccsw.tutorial.game.model.GameDto;
 */
 public interface GameService {
 
+	
+	
+	
+	/**
+    * Recupera un {@link com.capgemini.ccsw.tutorial.game.model.Game} a través de su ID
+    * @param id
+    * @return
+    */
+    Game get(Long id);
+	
     /**
     * Recupera los juegos filtrando opcionalmente por título y/o categoría
     * @param title

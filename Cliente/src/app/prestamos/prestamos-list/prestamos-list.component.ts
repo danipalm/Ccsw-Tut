@@ -6,13 +6,10 @@ import { Game } from 'src/app/game/model/Game';
 import { PageEvent } from '@angular/material/paginator';
 import { Pageable } from 'src/app/core/model/page/Pageable';
 import { Prestamo } from '../model/Prestamo';
-
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/clientes/model/Cliente';
 import { ClientesService } from 'src/app/clientes/clientes.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/dialog-confirmation.component';
-
 @Component({
   selector: 'app-prestamos-list',
   templateUrl: './prestamos-list.component.html',
@@ -22,6 +19,7 @@ export class PrestamosListComponent implements OnInit {
 
   clientes : Cliente[] | any;
   games: Game[] | any;
+  prestamos : Prestamo[] | any;
   filterCliente: Cliente | any;
   filterGame: Game | any;
   filterDate : Date | any;
@@ -31,7 +29,7 @@ export class PrestamosListComponent implements OnInit {
   totalElements: number = 0;
 
   dataSource = new MatTableDataSource<Prestamo>();
-  displayedColumns: string[] = ['id', 'game', 'client', 'date_p', 'date_d'];
+  displayedColumns: string[] = ['id', 'game', 'client', 'date_p', 'date_d','action'];
 
   constructor( private prestamosService: PrestamosService,
     private clientesService: ClientesService,
@@ -66,9 +64,10 @@ onSearch(): void {
     let gameId = this.filterGame != null ? this.filterGame.id : null;
     let clienteId = this.filterCliente != null ? this.filterCliente.id : null;
 
-    this.gameService.getGames(gameId, clienteId).subscribe(
-        games => this.games = games
-    );
+    this.prestamosService.getCustomPrestamos(gameId, clienteId).subscribe(
+      prestamos => this.prestamos = prestamos
+  );
+
 }
 
 createPrestamo() {

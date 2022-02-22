@@ -20,4 +20,9 @@ INSERT INTO CLIENTE(id, name) VALUES (1, 'Daniel');
 INSERT INTO CLIENTE(id, name) VALUES (2, 'Laura');
 INSERT INTO CLIENTE(id, name) VALUES (3, 'Carlos');
 
-INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (1, 1, 1, NULL, NULL);
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (1, 1, 1, '2022-01-11', '2022-01-20');
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (2, 2, 2, '2022-02-11', '2022-02-20');
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (3, 3, 2, '2022-03-11', '2022-03-20');
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (4, 4, 3, '2022-07-11', '2022-08-20');
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (5, 5, 3, '2022-10-11', '2022-10-20');
+INSERT INTO PRESTAMO(id, game_id, cliente_id, date_p, date_d) VALUES (6, 5, 3, '2022-11-11', '2022-11-12');

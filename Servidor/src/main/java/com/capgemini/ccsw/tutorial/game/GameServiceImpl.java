@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.ccsw.tutorial.author.AuthorService;
+import com.capgemini.ccsw.tutorial.author.model.Author;
 import com.capgemini.ccsw.tutorial.category.CategoryService;
 import com.capgemini.ccsw.tutorial.game.model.Game;
 import com.capgemini.ccsw.tutorial.game.model.GameDto;
@@ -58,5 +59,14 @@ public class GameServiceImpl implements GameService {
 
         this.gameRepository.save(game);
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Game get(Long id) {
+		// TODO Auto-generated method stub
+		return this.gameRepository.findById(id).orElse(null);
+	}
 
 }

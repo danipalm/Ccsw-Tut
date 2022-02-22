@@ -22,7 +22,7 @@ public interface AuthorService {
     Author get(Long id);
     
     /**
-    * Método para recuperar un listado paginado de {@link com.capgemini.ccsw.tutorial.prestamos.model.Prestamo}
+    * Método para recuperar un listado paginado de {@link com.capgemini.ccsw.tutorial.author.model.Author}
     * @param dto
     * @return
     */

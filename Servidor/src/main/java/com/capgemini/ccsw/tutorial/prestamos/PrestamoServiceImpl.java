@@ -9,12 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import com.capgemini.ccsw.tutorial.author.AuthorService;
-import com.capgemini.ccsw.tutorial.category.CategoryService;
 import com.capgemini.ccsw.tutorial.client.ClientService;
 import com.capgemini.ccsw.tutorial.game.GameService;
-import com.capgemini.ccsw.tutorial.game.model.Game;
-import com.capgemini.ccsw.tutorial.game.model.GameDto;
 import com.capgemini.ccsw.tutorial.prestamos.model.Prestamo;
 import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoDto;
 import com.capgemini.ccsw.tutorial.prestamos.model.PrestamoSearchDto;
@@ -30,7 +26,7 @@ public class PrestamoServiceImpl implements PrestamoService {
     PrestamoRepository prestamoRepository;
 
     @Autowired
-    ClientService authorService;
+    ClientService clientService;
 
     @Autowired
     GameService gameService;
@@ -46,28 +42,26 @@ public class PrestamoServiceImpl implements PrestamoService {
 	}
     
     
-    /*
-   
-        BeanUtils.copyProperties(dto, game, "id", "author", "category");
-
-        game.setAuthor(authorService.get(dto.getAuthor().getId()));
-        game.setCategory(categoryService.get(dto.getCategory().getId()));
-    }*/
 
     /**
      * {@inheritDoc}
      */
 	@Override
 	public void save(Long id, PrestamoDto dto) {
-		Prestamo prestamo = null;
-		
-		 if (id == null)
-			 prestamo = new Prestamo();
-	        else
-	         prestamo = this.prestamoRepository.findById(id).orElse(null);
-		 
+	Prestamo prestamo = new Prestamo();
+	
+	boolean comprobacionesOK = true;
+	 
+	 BeanUtils.copyProperties(dto, prestamo, "id", "game", "client");
+	 
+	 prestamo.setClient(clientService.get(dto.getClient().getId()));
+	 prestamo.setGame(gameService.get(dto.getGame().getId()));
+	 
+	 
+	 
+	 if (comprobacionesOK)
 		 this.prestamoRepository.save(prestamo);
-		
+	
 	}
 
 
@@ -75,5 +69,12 @@ public class PrestamoServiceImpl implements PrestamoService {
 	public Page<Prestamo> findPage(PrestamoSearchDto dto) {
 		 return this.prestamoRepository.findAll(dto.getPageable());
 	}
+	
+	/*
+    public void delete(Long id) {
+
+        this.prestamoRepository.deleteById(id);
+
+    } */
 
 }
