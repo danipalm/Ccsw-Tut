@@ -58,6 +58,7 @@ export class PrestamosListComponent implements OnInit {
     this.filterDate = null;
     this.filterCliente = null;
 
+
     this.onSearch();
 }
 
@@ -65,14 +66,14 @@ onSearch(): void {
 
     let gameId = this.filterGame != null ? this.filterGame.id : null;
     let clienteId = this.filterCliente != null ? this.filterCliente.id : null;
-    console.log("gameId = " + gameId + "| cliente: " + clienteId);
+    let fecha = this.filterDate != null ? this.filterDate : null;
+    console.log("gameId = " + gameId + "| cliente: " + clienteId + "| fecha: " + fecha );
 
-    this.prestamosService.getCustomPrestamos(gameId, clienteId).subscribe(
+    this.prestamosService.getCustomPrestamos(gameId, clienteId, fecha).subscribe(
       prestamos => this.prestamos = prestamos
-
   );
+    this.dataSource = this.prestamos;
 
-  this.dataSource = this.prestamos;
 
 }
 

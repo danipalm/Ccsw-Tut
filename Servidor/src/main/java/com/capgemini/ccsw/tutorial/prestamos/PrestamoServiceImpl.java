@@ -1,5 +1,6 @@
 package com.capgemini.ccsw.tutorial.prestamos;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -37,8 +38,8 @@ public class PrestamoServiceImpl implements PrestamoService {
      * {@inheritDoc}
      */
     @Override
-	public List<Prestamo> find(Long idGame, Long idCliente) {
-    	return this.prestamoRepository.find(idGame, idCliente);
+	public List<Prestamo> find(Long idGame, Long idCliente, Date fecha) {
+    	return this.prestamoRepository.find(idGame, idCliente, fecha);
 	}
     
     
@@ -57,7 +58,7 @@ public class PrestamoServiceImpl implements PrestamoService {
 	 prestamo.setClient(clientService.get(dto.getClient().getId()));
 	 prestamo.setGame(gameService.get(dto.getGame().getId()));
 	 
-	 List<Prestamo> listaPrestamosActuales =  find(prestamo.getGame().getId(), null);
+	 List<Prestamo> listaPrestamosActuales =  find(prestamo.getGame().getId(), null, null);
 
 	 
 	 if (comprobacionesOK)

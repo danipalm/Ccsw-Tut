@@ -18,8 +18,8 @@ export class PrestamosService {
     return this.http.post<PrestamoPage>('http://localhost:8080/prestamos', {pageable:pageable});
   }
 
-  getCustomPrestamos(gameId?: number, clienteId?: number): Observable<Prestamo[]> {
-    return this.http.get<Prestamo[]>(this.composeFindUrl(gameId, clienteId));
+  getCustomPrestamos(gameId?: number, clienteId?: number, fecha? : Date): Observable<Prestamo[]> {
+    return this.http.get<Prestamo[]>(this.composeFindUrl(gameId, clienteId, fecha));
 }
 
   getAllPrestamos(): Observable<Prestamo[]> {
@@ -37,7 +37,7 @@ export class PrestamosService {
 
 
 
-  private composeFindUrl(gameId?: number, clienteId?: number) : string {
+  private composeFindUrl(gameId?: number, clienteId?: number, fecha?: Date) : string {
     let params = '';
 
     if (gameId != null) {
@@ -49,6 +49,10 @@ export class PrestamosService {
         if (params != '') params += "&";
         params += "idCliente="+clienteId;
     }
+    if (fecha != null) {
+      if (params != '') params += "&";
+      params += "fecha="+fecha;
+  }
 
     let url = 'http://localhost:8080/prestamos'
 

@@ -1,5 +1,6 @@
 package com.capgemini.ccsw.tutorial.prestamos;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public interface PrestamoService {
     * @param idCliente
     * @return
     */
-    List<Prestamo> find(Long idGame, Long idCliente);
+    List<Prestamo> find(Long idGame, Long idCliente, Date fecha);
     	
     /**
      * Método para recuperar un listado paginado de {@link com.capgemini.ccsw.tutorial.prestamos.model.Prestamo}

@@ -1,5 +1,6 @@
 package com.capgemini.ccsw.tutorial.prestamos;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,10 @@ public class PrestamoController {
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<PrestamoDto> find(@RequestParam(value = "idGame", required = false) Long idGame,
-            @RequestParam(value = "idCliente", required = false) Long idCliente) {
+            @RequestParam(value = "idCliente", required = false) Long idCliente,
+            @RequestParam(value = "fecha", required = false)Date fecha) {
 
-        List<Prestamo> prestamos = prestamoService.find(idGame, idCliente);
+        List<Prestamo> prestamos = prestamoService.find(idGame, idCliente, fecha);
 
         return beanMapper.mapList(prestamos, PrestamoDto.class);
     }
