@@ -70,7 +70,7 @@ onSearch(): void {
     console.log("gameId = " + gameId + "| cliente: " + clienteId + "| fecha: " + fecha );
 
     this.prestamosService.getCustomPrestamos(gameId, clienteId, fecha).subscribe(
-      prestamos => this.prestamos = prestamos
+    prestamos => this.prestamos = prestamos
 
     );
     this.dataSource = this.prestamos;

@@ -59,7 +59,18 @@ public class PrestamoServiceImpl implements PrestamoService {
 	 prestamo.setGame(gameService.get(dto.getGame().getId()));
 	 
 	 List<Prestamo> listaPrestamosActuales =  find(prestamo.getGame().getId(), null, null);
-
+	 
+	 for (Prestamo aux : listaPrestamosActuales)
+	 {
+		 
+		 if (prestamo.getDate_p().after (aux.getDate_p()) || prestamo.getDate_p().before (aux.getDate_d())
+				 || prestamo.getDate_d().before (aux.getDate_d()) )
+		 {
+				 
+			 comprobacionesOK = false;
+		 }
+		 	
+	 }
 	 
 	 if (comprobacionesOK)
 		 this.prestamoRepository.save(prestamo);
