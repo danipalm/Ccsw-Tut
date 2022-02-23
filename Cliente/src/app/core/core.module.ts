@@ -6,12 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+import { DialogSimpleComponent } from './dialog-simple/dialog-simple.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    DialogConfirmationComponent
+    DialogConfirmationComponent,
+    DialogSimpleComponent
   ],
   imports: [
     CommonModule,

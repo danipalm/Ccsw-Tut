@@ -71,9 +71,9 @@ onSearch(): void {
 
     this.prestamosService.getCustomPrestamos(gameId, clienteId, fecha).subscribe(
       prestamos => this.prestamos = prestamos
-  );
-    this.dataSource = this.prestamos;
 
+    );
+    this.dataSource = this.prestamos;
 
 }
 
